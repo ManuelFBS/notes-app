@@ -87,13 +87,27 @@ const App = () => {
     setSelectedNote(null);
   };
 
+  const handleCancel = () => {
+    setTitle('');
+    setContent('');
+    setSelectedNote(null);
+  };
+
   return (
     <div className='app-container'>
-      <form className='note-form' onSubmit={(event) => handleAddNote(event)}>
+      <form className='note-form' onSubmit={(event) => (selectedNote ? handleUpdateNote(event) : handleAddNote(event))}>
         <input value={title} onChange={(event) => setTitle(event.target.value)} placeholder='Title' required></input>
+
         <textarea value={content} onChange={(event) => setContent(event.target.value)} placeholder='Content' rows={10} required></textarea>
 
-        <button type='submit'>Add Note</button>
+        {selectedNote ? (
+          <div className='edit-buttons'>
+            <button type='submit'>Save</button>
+            <button onClick={handleCancel}>Cancel</button>
+          </div>
+        ) : (
+          <button type='submit'>Add Note</button>
+        )}
       </form>
       <div className='notes-grid'>
         {notes.map((note) => (
