@@ -1,58 +1,23 @@
 import './App.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const App = () => {
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      title: 'Test Note 1',
-      content: 'Anything you want to say 1...'
-    },
-    {
-      id: 2,
-      title: 'Test Note 2',
-      content: 'Anything you want to say 2...'
-    },
-    {
-      id: 3,
-      title: 'Test Note 3',
-      content: 'Anything you want to say 3...'
-    },
-    {
-      id: 4,
-      title: 'Test Note 4',
-      content: 'Anything you want to say 4...'
-    },
-    {
-      id: 5,
-      title: 'Test Note 5',
-      content: 'Anything you want to say 5...'
-    },
-    {
-      id: 6,
-      title: 'Test Note 6',
-      content: 'Anything you want to say 6...'
-    }
-  ]);
-
   return (
     <div className='app-container'>
       <form className='note-form'>
-        <input placeholder='Title' required />
-        <textarea placeholder='Content' rows={10} required />
+        <input placeholder='title' required></input>
+        <textarea placeholder='content' rows={10} required></textarea>
 
-        <button type='submit'>Agregar Nota</button>
+        <button type='submit'>Add Note</button>
       </form>
-      <div className='notes-grid'>
-        {notes.map((note) => (
-          <div className='note-item'>
-            <div className='notes-header'>
-              <button>x</button>
-            </div>
-            <h2>{note.title}</h2>
-            <p>{note.content}</p>
+      <div className='note-grid'>
+        <div className='note-item'>
+          <div className='notes-header'>
+            <button>x</button>
           </div>
-        ))}
+          <h2>Note Title</h2>
+          <p>Note Content</p>
+        </div>
       </div>
     </div>
   );
