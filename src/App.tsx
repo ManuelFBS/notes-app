@@ -1,6 +1,40 @@
 import './App.css';
+import { useState } from 'react';
 
 const App = () => {
+  const [notes, setNotes] = useState<any[]>([
+    {
+      id: 1,
+      title: 'Test Note 1',
+      content: 'Anything you want to say 1...'
+    },
+    {
+      id: 2,
+      title: 'Test Note 2',
+      content: 'Anything you want to say 2...'
+    },
+    {
+      id: 3,
+      title: 'Test Note 3',
+      content: 'Anything you want to say 3...'
+    },
+    {
+      id: 4,
+      title: 'Test Note 4',
+      content: 'Anything you want to say 4...'
+    },
+    {
+      id: 5,
+      title: 'Test Note 5',
+      content: 'Anything you want to say 5...'
+    },
+    {
+      id: 6,
+      title: 'Test Note 6',
+      content: 'Anything you want to say 6...'
+    }
+  ]);
+
   return (
     <div className='app-container'>
       <form className='note-form'>
@@ -10,43 +44,18 @@ const App = () => {
         <button type='submit'>Agregar Nota</button>
       </form>
       <div className='notes-grid'>
-        <div className='note-item'>
-          <div className='notes-header'>
-            <button>x</button>
+        {notes.map((note) => (
+          <div className='note-item'>
+            <div className='notes-header'>
+              <button>x</button>
+            </div>
+            <h2>{note.title}</h2>
+            <p>{note.content}</p>
           </div>
-          <h2>Título de la Nota</h2>
-          <p>Note content...</p>
-        </div>
+        ))}
       </div>
     </div>
   );
 };
 
 export default App;
-
-// import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.tsx</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
