@@ -2,7 +2,7 @@ import './App.css';
 import { useState } from 'react';
 
 const App = () => {
-  const [notes, setNotes] = useState<any[]>([
+  const [notes, setNotes] = useState([
     {
       id: 1,
       title: 'Test Note 1',
