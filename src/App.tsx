@@ -1,8 +1,14 @@
 import './App.css';
 import React, { useState } from 'react';
 
+type Note = {
+  id: number;
+  title: string;
+  content: string;
+};
+
 const App = () => {
-  const [notes, setNotes] = useState([
+  const [notes, setNotes] = useState<Note[]>([
     {
       id: 1,
       title: 'Test #1',
@@ -35,22 +41,31 @@ const App = () => {
     }
   ]);
 
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    console.log('title: ', title);
+    console.log('content: ', content);
+  };
+
   return (
     <div className='app-container'>
-      <form className='note-form'>
-        <input placeholder='title' required></input>
-        <textarea placeholder='content' rows={10} required></textarea>
+      <form className='note-form' onSubmit={(event) => handleSubmit(event)}>
+        <input value={title} onChange={(event) => setTitle(event.target.value)} placeholder='Title' required></input>
+        <textarea value={content} onChange={(event) => setContent(event.target.value)} placeholder='Content' rows={10} required></textarea>
 
         <button type='submit'>Add Note</button>
       </form>
-      <div className='note-grid'>
+      <div className='notes-grid'>
         {notes.map((note) => (
           <div className='note-item'>
             <div className='notes-header'>
               <button>x</button>
             </div>
-            <h2>Note Title</h2>
-            <p>Note Content</p>
+            <h2>{note.title}</h2>
+            <p>{note.content}</p>
           </div>
         ))}
       </div>
