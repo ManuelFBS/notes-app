@@ -3,3 +3,6 @@ node_modules
 
 # Enviropment Vars
 .env
+
+# Tests
+apptest.http
