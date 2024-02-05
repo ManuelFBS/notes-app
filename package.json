@@ -4,7 +4,7 @@
   "description": "A single backend for notes-app",
   "main": "./src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx nodemon"
   },
   "author": "Manuel F. Borrego Sterling",
   "license": "ISC",
