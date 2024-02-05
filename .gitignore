@@ -1,2 +1,5 @@
 # Dependencies output
 node_modules
+
+# Enviropment Vars
+.env
