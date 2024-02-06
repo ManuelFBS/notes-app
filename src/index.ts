@@ -14,6 +14,28 @@ app.get('/api/notes', async (req, res) => {
   res.json(notes);
 });
 
+app.get('/api/notes/note/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+
+  if (!id || isNaN(id)) {
+    return res.status(400).send('ID must be valid integer...');
+  }
+
+  try {
+    const getNote = await prisma.note.findUnique({
+      where: { id }
+    });
+
+    if (!getNote) {
+      return res.status(404).send('ID not found...!');
+    }
+
+    res.json(getNote);
+  } catch (error) {
+    res.status(500).send('Something went wrong...!');
+  }
+});
+
 app.post('/api/notes', async (req, res) => {
   const { title, content } = req.body;
 
@@ -36,6 +58,10 @@ app.put('/api/notes/:id', async (req, res) => {
   const { title, content } = req.body;
   const id = parseInt(req.params.id);
 
+  if (!title || !content) {
+    return res.status(400).send('title and content fields required');
+  }
+
   if (!id || isNaN(id)) {
     return res.status(400).send('ID must be a valid number');
   }
@@ -49,6 +75,22 @@ app.put('/api/notes/:id', async (req, res) => {
     res.json(updatedNote);
   } catch (error) {
     res.status(500).send('Something went wrong...');
+  }
+});
+
+app.delete('/api/notes/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+
+  if (!id || isNaN(id)) {
+    return res.status(400).send('ID must be valid integer...!');
+  }
+
+  try {
+    const deletedNote = await prisma.note.delete({ where: { id } });
+
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).send('Something went wrong...!!!');
   }
 });
 
