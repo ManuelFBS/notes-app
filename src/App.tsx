@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 type Note = {
   id: number;
@@ -8,44 +8,30 @@ type Note = {
 };
 
 const App = () => {
-  const [notes, setNotes] = useState<Note[]>([
-    // {
-    //   id: 1,
-    //   title: 'Test #1',
-    //   content: 'This is a test... #1',
-    // },
-    // {
-    //   id: 2,
-    //   title: 'Test #2',
-    //   content: 'This is a test... #2',
-    // },
-    // {
-    //   id: 3,
-    //   title: 'Test #3',
-    //   content: 'This is a test... #3',
-    // },
-    // {
-    //   id: 4,
-    //   title: 'Test #4',
-    //   content: 'This is a test... #4',
-    // },
-    // {
-    //   id: 5,
-    //   title: 'Test #5',
-    //   content: 'This is a test... #5',
-    // },
-    // {
-    //   id: 6,
-    //   title: 'Test #6',
-    //   content: 'This is a test... #6',
-    // },
-  ]);
+  const [notes, setNotes] = useState<Note[]>([]);
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
   const [selectedNote, setSelectedNote] =
     useState<Note | null>(null);
+
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const response = await fetch(
+          'http://localhost:7000/api/notes',
+        );
+
+        const notes: Note[] = await response.json();
+
+        setNotes(notes);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchNotes();
+  }, []);
 
   const handleNoteClick = (note: Note) => {
     setSelectedNote(note);
