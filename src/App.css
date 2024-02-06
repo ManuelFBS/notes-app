@@ -40,10 +40,12 @@ body {
 .notes-header {
   display: flex;
   justify-content: flex-end;
+  margin-top: -20px;
 }
 
 .notes-header button {
   font-size: 16px;
+  color: rgb(200, 200, 200);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -55,8 +57,23 @@ body {
   color: ghostwhite;
 }
 
-h2 {
-  margin: 0;
+.note-title {
+  display: flex;
+  justify-content: center;
+  width: 250px;
+  margin-top: -10px;
+  padding-top: 15px;
+  background-color: transparent;
+  font-family: 'Tahoma';
+  font-size: 15px;
+  font-weight: 600;
+  font-style: italic;
+}
+
+h1 {
+  text-align: center;
+  color: whitesmoke;
+  font-family: 'Enigma';
 }
 
 .note-form {
@@ -68,14 +85,16 @@ h2 {
 textarea,
 input {
   border-radius: 5px;
-  border: 1px solid black;
+  border: 3px solid #bbb;
+  background-color: transparent;
+  color: ghostwhite;
   padding: 10px;
   font-size: 16px;
 }
 
 .note-form button {
   border-radius: 5px;
-  background-color: rgb(64, 154, 184);
+  background-color: rgb(45, 91, 207);
   border: none;
   padding: 10px;
   font-size: 16px;
