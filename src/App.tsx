@@ -47,6 +47,9 @@ const App = () => {
         'http://localhost:7000/api/notes',
         {
           method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({
             title,
             content,
