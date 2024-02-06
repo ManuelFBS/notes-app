@@ -39,18 +39,29 @@ const App = () => {
     setContent(note.content);
   };
 
-  const handleAddNote = (event: React.FormEvent) => {
+  const handleAddNote = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const newNote: Note = {
-      id: notes.length + 1,
-      title: title,
-      content: content,
-    };
+    try {
+      const response = await fetch(
+        'http://localhost:7000/api/notes',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            title,
+            content,
+          }),
+        },
+      );
 
-    setNotes([newNote, ...notes]);
-    setTitle('');
-    setContent('');
+      const newNote = await response.json();
+
+      setNotes([newNote, ...notes]);
+      setTitle('');
+      setContent('');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleUpdateNote = (event: React.FormEvent) => {
